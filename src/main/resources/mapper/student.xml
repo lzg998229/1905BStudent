@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lzg.api.dao.StudentDao">
+            <select id="queryStudentCount" resultType="long">
+                select count(id) from ssm_springboot_student where isDel=1
+
+            </select>
+
+            <select id="queryStudentlist" resultType="com.lzg.api.entity.po.StudentPoBean" parameterType="com.lzg.api.util.PageBen">
+                select * from ssm_springboot_student where isDel=1
+                limit #{start},#{length}
+            </select>
+
+
+    <update id="delStudent" parameterType="java.lang.Integer">
+        update  ssm_springboot_student  set isDel=2 where id=#{id}
+    </update>
+</mapper>
