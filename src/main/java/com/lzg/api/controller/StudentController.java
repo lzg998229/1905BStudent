@@ -1,12 +1,11 @@
 package com.lzg.api.controller;
 
 import com.lzg.api.entity.po.StudentPoBean;
-import com.lzg.api.entity.vo.StudentVoBean;
 import com.lzg.api.service.StudentService;
 import com.lzg.api.util.ExcelRefAnno;
-import com.lzg.api.util.ExportExcelUtil;
 import com.lzg.api.util.OSSClientUtil;
 import com.lzg.api.util.PageBen;
+import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,9 +30,12 @@ public class StudentController {
 
     @Resource
     private HttpServletRequest request;
+
+    private static Logger log = Logger.getLogger(StudentController.class);
     @RequestMapping("queryStudentlist")
     public PageBen<StudentPoBean> queryStudentlist(PageBen<StudentPoBean> poBeanPageBen){
         PageBen<StudentPoBean> list=studentService.queryStudentlist(poBeanPageBen);
+        log.info("查询成功");
         return list;
     }
     @RequestMapping("addStudent")

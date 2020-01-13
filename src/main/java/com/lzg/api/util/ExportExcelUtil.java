@@ -48,9 +48,8 @@ public class ExportExcelUtil {
         //第一行需要合并单元格
         //CellRangeAddress(startRow,endRow,startCell,endCell)
         CellRangeAddress cellRangeAddress=new CellRangeAddress(0,0,0,bean.getColumns().length-1);
-            //才是去合并单元格
+        //才是去合并单元格
         sheet.addMergedRegion(cellRangeAddress);
-
         //创建列头
         XSSFRow columnRow=sheet.createRow(1);
         columnRow.setHeight((short)400);
@@ -60,14 +59,12 @@ public class ExportExcelUtil {
             cellCol.setCellValue(colums[i]);
             cellCol.setCellStyle(colunmStyle);
         }
-
         //创建数据行
         List<Object> list= (List<Object>) bean.getData();
         for(int i=0;i<list.size();i++){
             Object dataObj=list.get(i);
             XSSFRow dataRow=sheet.createRow(i+2);
             dataRow.setHeight((short)400);
-
             //java的反射机制的使用.
             //给我一个类CLSSS，我可以获取里边的方法，属性。。。。：给我一个对象我可以操作里边的额方法和属性
                 String[] fields=bean.getFields();
